@@ -4,6 +4,10 @@ def intersection(arrays):
     """
     # Your code here
 
+    #I possibly could have been more efficient, not sure how
+    #Needed a hash table of all numbers, amount of arrays passed,
+    #and I made a second hash table for only the same nubmers
+    #because I wasn't sure how else to move the data around
     only_same = {}
     everything = {}
     length = len(arrays)
@@ -11,7 +15,9 @@ def intersection(arrays):
     result = []
 
 
-
+    #go over the list of arrays, then in each array add each item to
+    #a hash table, if it's already in the hash table increment the 
+    #second variable
     for array in arrays:
         for i in array:
             if i not in everything:
@@ -19,10 +25,13 @@ def intersection(arrays):
             else:
                 everything[i] += 1
         
+    #check the elements in everything, if the variable matches the 
+    #length that key is in every array
     for i in everything:
         if everything[i] == length:
             only_same[i] = everything[i]
 
+    #pull the key off the element in only same and put it in the list 'result'
     for key, value in only_same.items():
         result.append(key)
 
